@@ -26,9 +26,14 @@ jobs:
       - name: Test and build IPA
         working-directory: FinanceLocal
         run: bash scripts/build-ipa.sh
+      - name: Capture simulator previews
+        working-directory: FinanceLocal
+        run: bash scripts/screenshots.sh
       - uses: actions/upload-artifact@v4
         with:
           name: FinanceLocal-iOS16-unsigned
-          path: FinanceLocal/build/FinanceLocal-unsigned.ipa
+          path: |
+            FinanceLocal/build/FinanceLocal-unsigned.ipa
+            FinanceLocal/build/previews/*.png
           if-no-files-found: error
           retention-days: 3
